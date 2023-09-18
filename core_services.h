@@ -28,18 +28,8 @@ typedef struct CoreQueue{
 
 typedef struct CoreComp{
 	char* comp_abv;
-	CoreQueue incoming_queue;
-	CoreQueue outgoing_queue;
+	CoreQueue queue;
 } CoreComp;
 #endif
 
-bool enqueueIncomingRequest(CoreRequest* req, CoreComp* cc){
-	if (cc->incoming_queue.head < QUEUE_SIZE){
-		cc->incoming_queue.req_arr[cc->incoming_queue.head]=*req;
-		if (cc->incomig_queue.head+1 < QUEUE_SIZE){
-			cc->incoming_queue.head++;
-		}
-	return true;
-	}
-	else return false;
-}
+bool enqueueIncomingRequest(CoreRequest* req, CoreComp* cc);
