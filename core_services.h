@@ -1,5 +1,6 @@
 #ifndef CORE_SERVICES_HEADER
 #define CORE_SERVICES_HEADER
+#include <stdbool.h>
 #define QUEUE_SIZE 55
 
 enum Component {temperatre, humidity};
@@ -31,3 +32,14 @@ typedef struct CoreComp{
 	CoreQueue outgoing_queue;
 } CoreComp;
 #endif
+
+bool enqueueIncomingRequest(CoreRequest* req, CoreComp* cc){
+	if (cc->incoming_queue.head < QUEUE_SIZE){
+		cc->incoming_queue.req_arr[cc->incoming_queue.head]=*req;
+		if (cc->incomig_queue.head+1 < QUEUE_SIZE){
+			cc->incoming_queue.head++;
+		}
+	return true;
+	}
+	else return false;
+}
