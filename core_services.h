@@ -16,19 +16,19 @@ typedef struct CoreResponse{
 	//response
 } CoreResponse;
 
-typedef struct CoreQueue{
-	int head;
-	int tail;
-	union{
-		CoreRequest req_arr[QUEUE_SIZE];
+typedef struct CoreRequestResponseQueue{
+	int res_head;
+	int res_tail;
+	int req_head;
+	int req_tail;
+	CoreRequest req_arr[QUEUE_SIZE];
 
-		CoreResponse res_arr[QUEUE_SIZE];
-	};
-} CoreQueue;
+	CoreResponse res_arr[QUEUE_SIZE];
+} CoreRequestResponseQueue;
 
 typedef struct CoreComp{
 	char* comp_abv;
-	CoreQueue queue;
+	CoreRequestResponseQueue queue;
 } CoreComp;
 #endif
 
